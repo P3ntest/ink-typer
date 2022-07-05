@@ -25,6 +25,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const ink_1 = require("ink");
+const sentences = [
+    "The only sin is ignorance",
+    "A man is his own easiest dupe, for what he wishes to be true he generally believes to be true",
+    "A lie can travel halfway around the world while the truth is putting on its shoes",
+    "Great minds discuss ideas; average minds discuss events; small minds discuss people",
+    "If you have a garden and a library, you have everything you need",
+    "Truth comes out in wine",
+    "Everything in the universe is within you. Ask all from yourself",
+    "When I get a little money I buy books; and if any is left I buy food and clothes",
+];
 const App = () => {
     const [currentSentance, setCurrentSentance] = (0, react_1.useState)("Hello World");
     const [currentInput, setCurrentInput] = (0, react_1.useState)("");
@@ -38,7 +48,7 @@ const App = () => {
         if (key.return) {
             if (currentSentance === currentInput) {
                 setCurrentInput("");
-                setCurrentSentance("How are you doing");
+                setCurrentSentance(sentences[Math.floor(Math.random() * sentences.length)]);
             }
         }
     });
@@ -47,7 +57,7 @@ const App = () => {
         react_1.default.createElement(ink_1.Text, null,
             currentInput.split("").map((char, i) => {
                 const correct = currentSentance[i] === char;
-                return (react_1.default.createElement(ink_1.Text, { key: i, color: correct ? "gray" : "red", bold: !correct }, char));
+                return (react_1.default.createElement(ink_1.Text, { key: i, color: correct ? "gray" : "white", backgroundColor: correct ? "transparent" : "redBright", bold: !correct }, char));
             }),
             "_")));
 };
